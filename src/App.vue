@@ -1,19 +1,12 @@
 <template>
   <div id="app">
-    <ToDoContainer />
+    <div id="nav">
+      <router-link :to="{ name: 'home' }">Home</router-link> |
+      <router-link :to="{ name: 'about' }">About</router-link>
+    </div>
+    <router-view />
   </div>
 </template>
-
-<script>
-import ToDoContainer from '@/components/ToDoContainer.vue'
-
-export default {
-  name: 'app',
-  components: {
-    ToDoContainer
-  }
-}
-</script>
 
 <style>
 #app {
