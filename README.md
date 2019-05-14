@@ -10,7 +10,7 @@ I'm a designer-developer dedicated to creating beautiful, functional, inclusive,
 
 A big old todo list, which saves todos to the browser’s `localStorage`; allowing a user to edit and complete their todos.
 
-### Li
+### Links
 
 - [Basic demo codebase](https://github.com/martinlaws/todo-list/releases/tag/complete%2Fbasic)
 - [Code with `vue-router`](https://github.com/martinlaws/todo-list/releases/tag/complete%2Frouter)
