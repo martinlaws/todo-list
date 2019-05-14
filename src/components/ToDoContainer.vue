@@ -55,12 +55,17 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .todos-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr 1fr;
   gap: 2rem;
+}
+
+.todos-container .todo-card:first-of-type {
+  grid-column: span 3;
+  font-size: 3rem;
 }
 
 .todo-card {
@@ -72,20 +77,15 @@ export default {
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
+}
 
-  &.complete {
-    text-decoration: line-through;
-    background-color: lightcoral;
-  }
+.todo-card h2 {
+  cursor: pointer;
+  user-select: none;
+}
 
-  &:first-of-type {
-    grid-column: span 3;
-    font-size: 3rem;
-  }
-
-  h2 {
-    user-select: none;
-    cursor: pointer;
-  }
+.complete {
+  text-decoration: line-through;
+  background-color: lightcoral;
 }
 </style>

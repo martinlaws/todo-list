@@ -1,12 +1,15 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link :to="{ name: 'home' }">Home</router-link> |
-      <router-link :to="{ name: 'about' }">About</router-link>
-    </div>
-    <router-view />
+    <ToDoContainer />
   </div>
 </template>
+
+<script>
+import ToDoContainer from '@/components/ToDoContainer'
+export default {
+  components: { ToDoContainer }
+}
+</script>
 
 <style>
 #app {
