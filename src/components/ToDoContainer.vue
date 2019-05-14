@@ -5,23 +5,14 @@
         class="todo-card"
         v-for="todo in todos"
         :key="todo.id"
-        @click="completeTodo(todo)"
-        :class="{
-          complete: todo.complete,
-          incomplete: !todo.complete
-        }"
+        :class="{ complete: todo.complete }"
       >
-        <h2>{{ todo.title }}</h2>
+        <h2 @click="completeTodo(todo)">{{ todo.title }}</h2>
+        <input type="text" v-model="todo.title" @blur="save(todos)" />
       </div>
     </div>
     <form class="edit-form" @submit.prevent="save(todos)">
-      <input
-        type="text"
-        v-for="todo in todos"
-        :key="todo.id"
-        v-model="todo.title"
-        @blur="save(todos)"
-      />
+      <button @click="resetTodos">Reset Todos</button>
     </form>
   </div>
 </template>
@@ -36,24 +27,29 @@ const baseTodos = [
 ]
 
 export default {
+  data: function() {
+    return {
+      todos: this.fetchTodos()
+    }
+  },
   methods: {
-    save(todos) {
-      this.todos = todos
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
+    fetchTodos() {
+      const todos = JSON.parse(localStorage.getItem(STORAGE_KEY)) || baseTodos
+      return todos
     },
     completeTodo(todo) {
       todo.complete = !todo.complete
 
       this.save(this.todos)
     },
-    fetchTodos() {
-      const todos = JSON.parse(localStorage.getItem(STORAGE_KEY)) || baseTodos
-      return todos
-    }
-  },
-  data: function() {
-    return {
-      todos: this.fetchTodos()
+
+    save(todos) {
+      this.todos = todos
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
+    },
+    resetTodos() {
+      this.todos = baseTodos
+      this.save(baseTodos)
     }
   }
 }
@@ -61,47 +57,35 @@ export default {
 
 <style scoped>
 .todos-container {
-  height: 50%;
-  width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr 1fr;
+  gap: 2rem;
 }
 
 .todos-container .todo-card:first-of-type {
   grid-column: span 3;
-  height: 15rem;
   font-size: 3rem;
 }
 
 .todo-card {
-  margin: 0.5rem;
-  cursor: pointer;
-  user-select: none;
+  border-radius: 0.5rem;
+  height: 15rem;
   background-color: lightgreen;
   padding: 1rem;
   display: flex;
+  flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
+}
+
+.todo-card h2 {
+  cursor: pointer;
+  user-select: none;
 }
 
 .complete {
   text-decoration: line-through;
   background-color: lightcoral;
-}
-
-.edit-form {
-  margin-top: 2.5rem;
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  justify-content: space-around;
-  padding: 1.5rem;
-  margin: 0.5rem 0.5rem;
-  background-color: lightblue;
-}
-
-.edit-form__action-bar {
-  display: flex;
 }
 </style>
