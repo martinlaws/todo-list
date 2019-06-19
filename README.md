@@ -1,11 +1,3 @@
-# 👋 Hi, I'm Martin 🧔🏻
-
-@martin on slack
-
-I'm a designer-developer dedicated to creating beautiful, functional, inclusive, and accessible web experiences. My expertise is in front end development, design thinking, product prototyping, and technical strategy; I run a practice called Low Tide Consulting.
-
----
-
 ### What did we build?
 
 A big old todo list, which saves todos to the browser’s `localStorage`; allowing a user to edit and complete their todos.
